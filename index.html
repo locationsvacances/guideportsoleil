@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide du logis — Saint-Mandrier-sur-Mer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6f3ec;
+    --ink:#1e2a2f;
+    --ink-soft:#5a6b6f;
+    --line:#dcd5c6;
+    --accent:#1c6e8c;
+    --accent-soft:#e8a33d;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Work Sans", sans-serif;
+  }
+  h1,h2,h3,.display{
+    font-family:"Fraunces", serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .topbar{
+    position:sticky; top:0; z-index:20;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    padding:14px 20px;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+    backdrop-filter:blur(6px);
+  }
+  .brand{
+    font-family:"Fraunces", serif;
+    font-size:1.05rem;
+    font-weight:600;
+  }
+  select#lang-select{
+    border:1px solid var(--line);
+    background:var(--card);
+    color:var(--ink);
+    padding:9px 14px;
+    border-radius:999px;
+    font-family:"Work Sans", sans-serif;
+    font-size:0.85rem;
+    font-weight:500;
+    cursor:pointer;
+  }
+  .cover{
+    max-width:920px;
+    margin:28px auto 0;
+    padding:0 24px;
+    position:relative;
+  }
+  .cover img{
+    width:100%;
+    height:clamp(180px, 32vw, 320px);
+    object-fit:cover;
+    border-radius:18px;
+    display:block;
+  }
+  .cover-credit{
+    position:absolute;
+    right:34px;
+    bottom:10px;
+    font-size:0.68rem;
+    color:#fff;
+    background:rgba(30,42,47,0.45);
+    padding:2px 8px;
+    border-radius:999px;
+    letter-spacing:0.02em;
+  }
+  .hero{
+    padding:36px 24px 0;
+    max-width:920px;
+    margin:0 auto;
+    text-align:left;
+  }
+  .eyebrow{
+    font-size:0.75rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 6vw, 4.2rem);
+    line-height:0.98;
+    margin:0 0 14px;
+    color:var(--ink);
+  }
+  .hero p{
+    font-size:1.05rem;
+    color:var(--ink-soft);
+    max-width:56ch;
+    line-height:1.5;
+  }
+  .hero p a{
+    color:var(--accent);
+    font-weight:500;
+    text-decoration:underline;
+    text-underline-offset:2px;
+  }
+  .wave{
+    display:block;
+    width:100%;
+    height:70px;
+    margin-top:36px;
+  }
+  .wave path{
+    fill:none;
+    stroke:var(--accent);
+    stroke-width:1.6;
+    opacity:0.55;
+  }
+  main{
+    max-width:920px;
+    margin:0 auto;
+    padding:8px 24px 80px;
+  }
+  section.block{
+    padding:44px 0;
+    border-bottom:1px solid var(--line);
+  }
+  section.block:last-child{ border-bottom:none; }
+  .block-head{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:22px;
+  }
+  .icon{
+    width:26px; height:26px;
+    flex:none;
+    color:var(--accent);
+  }
+  .block-head h2{
+    font-size:1.5rem;
+    margin:0;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+    gap:14px;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px 20px;
+  }
+  .card h3{
+    font-size:0.95rem;
+    margin:0 0 8px;
+    font-family:"Work Sans", sans-serif;
+    font-weight:600;
+  }
+  .card a{
+    color:inherit;
+    text-decoration:none;
+    border-bottom:1px solid var(--accent);
+  }
+  .card a:hover{
+    color:var(--accent);
+  }
+  .card p{
+    font-size:0.92rem;
+    color:var(--ink-soft);
+    line-height:1.5;
+    margin:0;
+  }
+  .fill{
+    color:var(--accent-soft);
+    background:rgba(232,163,61,0.14);
+    padding:1px 6px;
+    border-radius:5px;
+    font-weight:500;
+  }
+  .wifi-actions{
+    margin-top:14px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .btn-primary, .btn-secondary{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-family:"Work Sans", sans-serif;
+    font-size:0.82rem;
+    font-weight:500;
+    padding:9px 14px;
+    border-radius:999px;
+    cursor:pointer;
+    text-decoration:none;
+    border:1px solid transparent;
+    transition:opacity .2s ease;
+  }
+  .btn-primary{
+    background:var(--card);
+    color:var(--accent);
+    border-color:var(--accent);
+  }
+  .btn-secondary{
+    background:transparent;
+    color:var(--accent);
+    border-color:var(--accent);
+  }
+  .btn-primary:hover, .btn-secondary:hover{
+    opacity:0.85;
+  }
+  ul.rules{
+    list-style:none;
+    margin:0; padding:0;
+    display:flex; flex-direction:column; gap:10px;
+  }
+  ul.rules li{
+    display:flex; gap:10px;
+    padding-bottom:10px;
+    border-bottom:1px dashed var(--line);
+  }
+  ul.rules li:last-child{ border-bottom:none; padding-bottom:0;}
+  ul.rules p{ margin:0; font-size:0.92rem; color:var(--ink-soft); line-height:1.5;}
+  .rules .num{
+    font-family:"Fraunces", serif;
+    color:var(--accent);
+    font-weight:600;
+    flex:none;
+    width:22px;
+  }
+  .contact-row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px dashed var(--line);
+    font-size:0.92rem;
+    gap:12px;
+  }
+  .contact-row:last-child{border-bottom:none;}
+  .contact-row .who{ color:var(--ink); font-weight:500; }
+  .contact-row .num{ color:var(--ink-soft); text-align:right;}
+  footer{
+    text-align:center;
+    padding:30px 24px 50px;
+    color:var(--ink-soft);
+    font-size:0.8rem;
+  }
+  @media (max-width:560px){
+    .topbar{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand" id="brand-text">Guide du logis</div>
+  <select id="lang-select">
+    <option value="fr">Français</option>
+    <option value="en">English</option>
+    <option value="it">Italiano</option>
+    <option value="es">Español</option>
+    <option value="pt">Português</option>
+    <option value="ru">Русский</option>
+  </select>
+</div>
+
+<div class="cover">
+  <img src="port-saint-mandrier.jpg" alt="Le port de Saint-Mandrier-sur-Mer">
+</div>
+
+<div class="hero">
+  <div class="eyebrow" id="eyebrow"></div>
+  <h1 id="hero-title"></h1>
+  <p id="hero-text"></p>
+  <svg class="wave" viewBox="0 0 400 40" preserveAspectRatio="none">
+    <path d="M0,20 C40,5 80,35 120,20 C160,5 200,35 240,20 C280,5 320,35 360,20 C380,12 400,20 400,20" />
+  </svg>
+</div>
+
+<main>
+
+  <section class="block">
+    <div class="block-head">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12.5a11 11 0 0 1 14 0"/><path d="M8 15.5a6.5 6.5 0 0 1 8 0"/><path d="M11 18.5a2 2 0 0 1 2 0"/><circle cx="12" cy="19.2" r="0.6" fill="currentColor"/></svg>
+      <h2 id="arrival-head"></h2>
+    </div>
+    <div class="grid">
+      <div class="card"><h3 id="hours-label"></h3><p id="hours-text"></p></div>
+      <div class="card"><h3 id="access-label"></h3><p id="access-text"></p></div>
+      <div class="card">
+        <h3 id="wifi-label"></h3>
+        <p id="wifi-text"></p>
+        <div class="wifi-actions">
+          <a id="wifi-connect" class="btn-primary" href="#"></a>
+          <button id="wifi-copy" type="button" class="btn-secondary"></button>
+        </div>
+      </div>
+      <div class="card"><h3 id="before-label"></h3><p id="before-text"></p></div>
+      <div class="card"><h3 id="equip-label"></h3><p id="equip-text"></p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19.5V6a2 2 0 0 1 2-2h11.5a1 1 0 0 1 1 1v13"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H18"/><path d="M8 8h7"/><path d="M8 11h7"/></svg>
+      <h2 id="rules-head"></h2>
+    </div>
+    <ul class="rules" id="rules-list"></ul>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="10" r="3.2"/><path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21Z"/></svg>
+      <h2 id="addr-head"></h2>
+    </div>
+    <div class="grid">
+      <div class="card"><h3 id="addr-restaurant-t"></h3><p id="addr-restaurant-d"></p></div>
+      <div class="card"><h3 id="addr-bakery-t"></h3><p id="addr-bakery-d"></p></div>
+      <div class="card"><h3 id="addr-beach-t"></h3><p id="addr-beach-d"></p></div>
+      <div class="card"><h3 id="addr-activity-t"></h3><p id="addr-activity-d"></p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v3a2 2 0 0 1-2 2C10.5 20 4 13.5 4 6a2 2 0 0 1 1-2Z"/></svg>
+      <h2 id="contacts-head"></h2>
+    </div>
+    <div class="card" id="contacts-card"></div>
+  </section>
+
+</main>
+
+<footer id="footer-text"></footer>
+
+<script>
+const T = {
+  fr: {
+    brand:"Guide du logis",
+    arrivalHead:"Arrivée & départ",
+    hoursLabel:"Horaires", hoursText:'Arrivée entre 14h00 et 19h00 — Départ avant 10h00.',
+    accessLabel:"Accès", accessText:'L\'appartement se trouve dans la résidence Port Soleil, bâtiment Les Pourpiers. L\'arrivée et le départ se font avec notre conciergerie, Maria — contactez-la au <a href="tel:+33622757195">06 22 75 71 95</a> pour convenir de l\'horaire.',
+    wifiLabel:"Wifi", wifiText:'Réseau : Port Soleil<br>Mot de passe : Portsoleil49pourpiers', wifiConnect:"Se connecter au Wi-Fi", wifiCopy:"Copier le mot de passe", wifiCopied:"Copié !",
+    beforeLabel:"Avant de partir", beforeText:"Vaisselle propre, poubelles descendues, climatisation éteinte. Merci !",
+    equipLabel:"Équipements", equipText:"Le logement est équipé d'une climatisation réversible. La résidence donne accès à une piscine (maillot de bain obligatoire, short de bain interdit), deux courts de tennis, une table de tennis de table et un terrain de pétanque.",
+    rulesHead:"Règlement intérieur",
+    rules:[
+      "Non-fumeur à l'intérieur du logement.",
+      'Merci de respecter le calme après 22h00, pour le confort du voisinage.',
+      'Capacité maximale : 4 personnes — pas de visiteurs supplémentaires sans accord préalable.',
+      'Animaux non acceptés.',
+      'Merci de trier les déchets — bacs situés dans le local poubelles.'
+    ],
+    addrHead:"Bonnes adresses",
+    addr:{
+      restaurant:{t:"Restaurants", d:"<a href='https://www.google.com/maps/search/?api=1&query=Go%C3%BBt-Th%C3%A9%20II%20Saint-Mandrier&query_place_id=ChIJ2zOSIu0cyRIRiHPGmVvmt3Q' target='_blank' rel='noopener'><strong>Goût-Thé II</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Le%20Lamparo%20Saint-Mandrier&query_place_id=ChIJJXmlUewcyRIRQL4a2vxx8jU' target='_blank' rel='noopener'><strong>Le Lamparo</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Burger%20de%20la%20Presqu%27ile%20Saint-Mandrier&query_place_id=ChIJv9n4BUMdyRIRDF6Iv4LSl-A' target='_blank' rel='noopener'><strong>Le Burger de la Presqu'île</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Restaurant%20Le%20Calypso%20Saint-Mandrier&query_place_id=ChIJm2BsE-0cyRIRdheDuFGP-6g' target='_blank' rel='noopener'><strong>Restaurant Le Calypso</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Bistrot%20Du%20Port%20Saint-Mandrier&query_place_id=ChIJqSSCjZUdyRIRm9L-_AdE7ZM' target='_blank' rel='noopener'><strong>Bistrot Du Port</strong></a>"},
+      bakery:{t:"Boulangeries", d:"<a href='https://www.google.com/maps/search/?api=1&query=Maison%20Sarroche%20Saint-Mandrier&query_place_id=ChIJt5MxoO0cyRIRVOFr-GwbTk4' target='_blank' rel='noopener'><strong>Maison Sarroche</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Le%20fournil%20mandreen%20Saint-Mandrier&query_place_id=ChIJs7OdHFIdyRIRF1jimAu9ZYQ' target='_blank' rel='noopener'><strong>Le Fournil Mandréen</strong></a>"},
+      beach:{t:"Plages à proximité", d:"<a href='https://www.google.com/maps/search/?api=1&query=Plage%20Coudouli%C3%A8re%20Saint-Mandrier&query_place_id=ChIJyyZRse8cyRIRKLMFOu5W_Kg' target='_blank' rel='noopener'>Plage de la Coudoulière</a> (~0,6 km), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Canon%20Saint-Mandrier&query_place_id=ChIJ4-DdQJMcyRIRqpuWlaL2Gz4' target='_blank' rel='noopener'>plage du Canon</a> (~0,7 km), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Touring%20Saint-Mandrier&query_place_id=ChIJWbxkDsEdyRIR4rCtyS5WW5U' target='_blank' rel='noopener'>plage du Touring</a> (~1 km), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Sainte-Asile%20Saint-Mandrier&query_place_id=ChIJQSOHU84cyRIR3H8RoTcUj5w' target='_blank' rel='noopener'>plage de Sainte-Asile</a> (~2,2 km), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Cavalas%20Saint-Mandrier&query_place_id=ChIJw9s03_YcyRIRfh2KFCSflmk' target='_blank' rel='noopener'>plage de Cavalas</a> (~0,6 km) et <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Vieille%20Saint-Mandrier&query_place_id=ChIJR8B5wZUcyRIRlnu04BPfbe8' target='_blank' rel='noopener'>plage de la Vieille</a> (~1,3 km)."},
+      activity:{t:"Activités", d:"<a href='https://www.google.com/maps/search/?api=1&query=Bateliers%20de%20la%20Cote%20d%27Azur%20Saint-Mandrier&query_place_id=ChIJ-yGbbFYyWkARLxXcdfmFdLA' target='_blank' rel='noopener'><strong>Les Bateliers de la Côte d'Azur</strong></a> — départ du port de Saint-Mandrier (quai Jules Guesde), traversée d'environ 1h vers Porquerolles ; Port-Cros accessible en correspondance.<br><a href='https://www.google.com/maps/search/?api=1&query=Sentier%20du%20littoral%20Saint-Mandrier&query_place_id=ChIJ1VuVDAAdyRIRJwnBsHi03wM' target='_blank' rel='noopener'><strong>Sentier du littoral</strong></a> — jolie randonnée facile, en famille, avec vue sur la mer.<br>Le port de Saint-Mandrier est accessible à pied (~10 min) — la navette maritime <a href='https://www.google.com/maps/search/?api=1&query=Ponton%20St%20Mandrier%20Reseau%20Mistral&query_place_id=ChIJd9lIIu0cyRIRAPeiFQqw7D0' target='_blank' rel='noopener'><strong>Ponton du Réseau Mistral</strong></a> permet de rejoindre Toulon facilement en environ 20 minutes."}
+    },
+    contactsHead:"Contacts utiles",
+    contacts:[
+      {who:"Conciergerie", num:'Maria — <a href="tel:+33622757195">06 22 75 71 95</a>'},
+      {who:"Urgences (numéro européen)", num:'<a href="tel:112">112</a>'},
+      {who:"SAMU", num:'<a href="tel:15">15</a>'},
+      {who:"Police / Gendarmerie", num:'<a href="tel:17">17</a>'},
+      {who:"Pompiers", num:'<a href="tel:18">18</a>'}
+    ],
+    footer:"",
+    hero:{eyebrow:"Var · Presqu'île de Saint-Mandrier-sur-Mer", title:"Bienvenue<br>à Saint-Mandrier-sur-Mer", text:"Tout ce qu'il faut savoir pour profiter du logement, de l'arrivée jusqu'au départ. <a href='https://www.google.com/maps/search/?api=1&query=Office%20de%20tourisme%20Saint-Mandrier&query_place_id=ChIJ5xSvF-0cyRIRjier4JLJA-s' target='_blank' rel='noopener'>Office de tourisme de Saint-Mandrier-sur-Mer</a>."}
+  },
+  en: {
+    brand:"Guest Guide",
+    arrivalHead:"Arrival & departure",
+    hoursLabel:"Hours", hoursText:'Check-in between 2:00 PM and 7:00 PM — Check-out before 10:00 AM.',
+    accessLabel:"Access", accessText:'The apartment is located in the Port Soleil residence, Les Pourpiers building. Check-in and check-out are handled by our concierge, Maria — contact her at <a href="tel:+33622757195">+33 6 22 75 71 95</a> to arrange a time.',
+    wifiLabel:"Wifi", wifiText:'Network: Port Soleil<br>Password: Portsoleil49pourpiers', wifiConnect:"Connect to Wifi", wifiCopy:"Copy password", wifiCopied:"Copied!",
+    beforeLabel:"Before you leave", beforeText:"Please wash the dishes, take out the bins, and switch off the air conditioning. Thank you!",
+    equipLabel:"Equipment", equipText:"The apartment is equipped with reversible air conditioning. The residence gives access to a swimming pool (swimwear only, board shorts not allowed), two tennis courts, a table tennis table and a pétanque court.",
+    rulesHead:"House rules",
+    rules:[
+      "No smoking inside the apartment.",
+      'Please keep noise down after 10:00 PM, out of respect for the neighbours.',
+      'Maximum capacity: 4 guests — no extra visitors without prior agreement.',
+      'Pets are not allowed.',
+      'Please sort your rubbish — bins are located in the bin room.'
+    ],
+    addrHead:"Local recommendations",
+    addr:{
+      restaurant:{t:"Restaurants", d:"<a href='https://www.google.com/maps/search/?api=1&query=Go%C3%BBt-Th%C3%A9%20II%20Saint-Mandrier&query_place_id=ChIJ2zOSIu0cyRIRiHPGmVvmt3Q' target='_blank' rel='noopener'><strong>Goût-Thé II</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Le%20Lamparo%20Saint-Mandrier&query_place_id=ChIJJXmlUewcyRIRQL4a2vxx8jU' target='_blank' rel='noopener'><strong>Le Lamparo</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Burger%20de%20la%20Presqu%27ile%20Saint-Mandrier&query_place_id=ChIJv9n4BUMdyRIRDF6Iv4LSl-A' target='_blank' rel='noopener'><strong>Le Burger de la Presqu'île</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Restaurant%20Le%20Calypso%20Saint-Mandrier&query_place_id=ChIJm2BsE-0cyRIRdheDuFGP-6g' target='_blank' rel='noopener'><strong>Restaurant Le Calypso</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Bistrot%20Du%20Port%20Saint-Mandrier&query_place_id=ChIJqSSCjZUdyRIRm9L-_AdE7ZM' target='_blank' rel='noopener'><strong>Bistrot Du Port</strong></a>"},
+      bakery:{t:"Bakeries", d:"<a href='https://www.google.com/maps/search/?api=1&query=Maison%20Sarroche%20Saint-Mandrier&query_place_id=ChIJt5MxoO0cyRIRVOFr-GwbTk4' target='_blank' rel='noopener'><strong>Maison Sarroche</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Le%20fournil%20mandreen%20Saint-Mandrier&query_place_id=ChIJs7OdHFIdyRIRF1jimAu9ZYQ' target='_blank' rel='noopener'><strong>Le Fournil Mandréen</strong></a>"},
+      beach:{t:"Nearby beaches", d:"<a href='https://www.google.com/maps/search/?api=1&query=Plage%20Coudouli%C3%A8re%20Saint-Mandrier&query_place_id=ChIJyyZRse8cyRIRKLMFOu5W_Kg' target='_blank' rel='noopener'>Plage de la Coudoulière</a> (~0.6 km), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Canon%20Saint-Mandrier&query_place_id=ChIJ4-DdQJMcyRIRqpuWlaL2Gz4' target='_blank' rel='noopener'>Plage du Canon</a> (~0.7 km), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Touring%20Saint-Mandrier&query_place_id=ChIJWbxkDsEdyRIR4rCtyS5WW5U' target='_blank' rel='noopener'>Plage du Touring</a> (~1 km), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Sainte-Asile%20Saint-Mandrier&query_place_id=ChIJQSOHU84cyRIR3H8RoTcUj5w' target='_blank' rel='noopener'>Plage de Sainte-Asile</a> (~2.2 km), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Cavalas%20Saint-Mandrier&query_place_id=ChIJw9s03_YcyRIRfh2KFCSflmk' target='_blank' rel='noopener'>Plage de Cavalas</a> (~0.6 km) and <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Vieille%20Saint-Mandrier&query_place_id=ChIJR8B5wZUcyRIRlnu04BPfbe8' target='_blank' rel='noopener'>Plage de la Vieille</a> (~1.3 km)."},
+      activity:{t:"Activities", d:"<a href='https://www.google.com/maps/search/?api=1&query=Bateliers%20de%20la%20Cote%20d%27Azur%20Saint-Mandrier&query_place_id=ChIJ-yGbbFYyWkARLxXcdfmFdLA' target='_blank' rel='noopener'><strong>Les Bateliers de la Côte d'Azur</strong></a> — departing from Saint-Mandrier harbour (quai Jules Guesde), about a 1-hour crossing to Porquerolles; Port-Cros reachable via connection.<br><a href='https://www.google.com/maps/search/?api=1&query=Sentier%20du%20littoral%20Saint-Mandrier&query_place_id=ChIJ1VuVDAAdyRIRJwnBsHi03wM' target='_blank' rel='noopener'><strong>Sentier du littoral</strong></a> — a lovely easy coastal walk, great for families, with sea views.<br>Saint-Mandrier's port is within walking distance (~10 min) — the <a href='https://www.google.com/maps/search/?api=1&query=Ponton%20St%20Mandrier%20Reseau%20Mistral&query_place_id=ChIJd9lIIu0cyRIRAPeiFQqw7D0' target='_blank' rel='noopener'><strong>Ponton du Réseau Mistral</strong></a> boat shuttle gets you to Toulon easily in about 20 minutes."}
+    },
+    contactsHead:"Useful contacts",
+    contacts:[
+      {who:"Concierge", num:'Maria — <a href="tel:+33622757195">+33 6 22 75 71 95</a>'},
+      {who:"Emergency (European number)", num:'<a href="tel:112">112</a>'},
+      {who:"Ambulance (SAMU)", num:'<a href="tel:15">15</a>'},
+      {who:"Police", num:'<a href="tel:17">17</a>'},
+      {who:"Fire brigade", num:'<a href="tel:18">18</a>'}
+    ],
+    footer:"",
+    hero:{eyebrow:"Var · Saint-Mandrier-sur-Mer peninsula", title:"Welcome<br>to Saint-Mandrier-sur-Mer", text:"Everything you need to know to enjoy the apartment, from arrival to departure. <a href='https://www.google.com/maps/search/?api=1&query=Office%20de%20tourisme%20Saint-Mandrier&query_place_id=ChIJ5xSvF-0cyRIRjier4JLJA-s' target='_blank' rel='noopener'>Saint-Mandrier-sur-Mer Tourist Office</a>."}
+  },
+  it: {
+    brand:"Guida per gli ospiti",
+    arrivalHead:"Arrivo e partenza",
+    hoursLabel:"Orari", hoursText:'Check-in tra le 14:00 e le 19:00 — Check-out entro le 10:00.',
+    accessLabel:"Accesso", accessText:'L\'appartamento si trova nella residenza Port Soleil, edificio Les Pourpiers. L\'arrivo e la partenza sono gestiti dalla nostra concierge, Maria — contattatela al <a href="tel:+33622757195">+33 6 22 75 71 95</a> per concordare l\'orario.',
+    wifiLabel:"Wifi", wifiText:'Rete: Port Soleil<br>Password: Portsoleil49pourpiers', wifiConnect:"Connettersi al Wifi", wifiCopy:"Copia password", wifiCopied:"Copiato!",
+    beforeLabel:"Prima di partire", beforeText:"Si prega di lavare i piatti, portare fuori la spazzatura e spegnere il climatizzatore. Grazie!",
+    equipLabel:"Dotazioni", equipText:"L'appartamento è dotato di climatizzatore reversibile. La residenza dà accesso a una piscina (costume da bagno obbligatorio, bermuda da bagno non ammessi), due campi da tennis, un tavolo da ping-pong e un campo da pétanque.",
+    rulesHead:"Regolamento interno",
+    rules:[
+      "Vietato fumare all'interno dell'appartamento.",
+      'Si prega di mantenere il silenzio dopo le 22:00, per rispetto dei vicini.',
+      'Capacità massima: 4 persone — nessun visitatore aggiuntivo senza accordo preventivo.',
+      'Animali non ammessi.',
+      'Si prega di differenziare i rifiuti — i bidoni si trovano nel locale rifiuti.'
+    ],
+    addrHead:"Indirizzi consigliati",
+    addr:{
+      restaurant:{t:"Ristoranti", d:"<a href='https://www.google.com/maps/search/?api=1&query=Go%C3%BBt-Th%C3%A9%20II%20Saint-Mandrier&query_place_id=ChIJ2zOSIu0cyRIRiHPGmVvmt3Q' target='_blank' rel='noopener'><strong>Goût-Thé II</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Le%20Lamparo%20Saint-Mandrier&query_place_id=ChIJJXmlUewcyRIRQL4a2vxx8jU' target='_blank' rel='noopener'><strong>Le Lamparo</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Burger%20de%20la%20Presqu%27ile%20Saint-Mandrier&query_place_id=ChIJv9n4BUMdyRIRDF6Iv4LSl-A' target='_blank' rel='noopener'><strong>Le Burger de la Presqu'île</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Restaurant%20Le%20Calypso%20Saint-Mandrier&query_place_id=ChIJm2BsE-0cyRIRdheDuFGP-6g' target='_blank' rel='noopener'><strong>Restaurant Le Calypso</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Bistrot%20Du%20Port%20Saint-Mandrier&query_place_id=ChIJqSSCjZUdyRIRm9L-_AdE7ZM' target='_blank' rel='noopener'><strong>Bistrot Du Port</strong></a>"},
+      bakery:{t:"Panetterie", d:"<a href='https://www.google.com/maps/search/?api=1&query=Maison%20Sarroche%20Saint-Mandrier&query_place_id=ChIJt5MxoO0cyRIRVOFr-GwbTk4' target='_blank' rel='noopener'><strong>Maison Sarroche</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Le%20fournil%20mandreen%20Saint-Mandrier&query_place_id=ChIJs7OdHFIdyRIRF1jimAu9ZYQ' target='_blank' rel='noopener'><strong>Le Fournil Mandréen</strong></a>"},
+      beach:{t:"Spiagge nei dintorni", d:"<a href='https://www.google.com/maps/search/?api=1&query=Plage%20Coudouli%C3%A8re%20Saint-Mandrier&query_place_id=ChIJyyZRse8cyRIRKLMFOu5W_Kg' target='_blank' rel='noopener'>Plage de la Coudoulière</a> (~0,6 km), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Canon%20Saint-Mandrier&query_place_id=ChIJ4-DdQJMcyRIRqpuWlaL2Gz4' target='_blank' rel='noopener'>Plage du Canon</a> (~0,7 km), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Touring%20Saint-Mandrier&query_place_id=ChIJWbxkDsEdyRIR4rCtyS5WW5U' target='_blank' rel='noopener'>Plage du Touring</a> (~1 km), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Sainte-Asile%20Saint-Mandrier&query_place_id=ChIJQSOHU84cyRIR3H8RoTcUj5w' target='_blank' rel='noopener'>Plage de Sainte-Asile</a> (~2,2 km), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Cavalas%20Saint-Mandrier&query_place_id=ChIJw9s03_YcyRIRfh2KFCSflmk' target='_blank' rel='noopener'>Plage de Cavalas</a> (~0,6 km) e <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Vieille%20Saint-Mandrier&query_place_id=ChIJR8B5wZUcyRIRlnu04BPfbe8' target='_blank' rel='noopener'>Plage de la Vieille</a> (~1,3 km)."},
+      activity:{t:"Attività", d:"<a href='https://www.google.com/maps/search/?api=1&query=Bateliers%20de%20la%20Cote%20d%27Azur%20Saint-Mandrier&query_place_id=ChIJ-yGbbFYyWkARLxXcdfmFdLA' target='_blank' rel='noopener'><strong>Les Bateliers de la Côte d'Azur</strong></a> — partenza dal porto di Saint-Mandrier (quai Jules Guesde), traversata di circa 1 ora verso Porquerolles; Port-Cros raggiungibile in coincidenza.<br><a href='https://www.google.com/maps/search/?api=1&query=Sentier%20du%20littoral%20Saint-Mandrier&query_place_id=ChIJ1VuVDAAdyRIRJwnBsHi03wM' target='_blank' rel='noopener'><strong>Sentier du littoral</strong></a> — una bella passeggiata costiera facile, adatta alle famiglie, con vista sul mare.<br>Il porto di Saint-Mandrier è raggiungibile a piedi (~10 min) — la navetta marittima <a href='https://www.google.com/maps/search/?api=1&query=Ponton%20St%20Mandrier%20Reseau%20Mistral&query_place_id=ChIJd9lIIu0cyRIRAPeiFQqw7D0' target='_blank' rel='noopener'><strong>Ponton du Réseau Mistral</strong></a> permette di raggiungere Tolone facilmente in circa 20 minuti."}
+    },
+    contactsHead:"Contatti utili",
+    contacts:[
+      {who:"Concierge", num:'Maria — <a href="tel:+33622757195">+33 6 22 75 71 95</a>'},
+      {who:"Emergenza (numero europeo)", num:'<a href="tel:112">112</a>'},
+      {who:"Ambulanza (SAMU)", num:'<a href="tel:15">15</a>'},
+      {who:"Polizia", num:'<a href="tel:17">17</a>'},
+      {who:"Vigili del fuoco", num:'<a href="tel:18">18</a>'}
+    ],
+    footer:"",
+    hero:{eyebrow:"Var · Penisola di Saint-Mandrier-sur-Mer", title:"Benvenuti<br>a Saint-Mandrier-sur-Mer", text:"Tutto ciò che c'è da sapere per godersi l'appartamento, dall'arrivo alla partenza. <a href='https://www.google.com/maps/search/?api=1&query=Office%20de%20tourisme%20Saint-Mandrier&query_place_id=ChIJ5xSvF-0cyRIRjier4JLJA-s' target='_blank' rel='noopener'>Ufficio turistico di Saint-Mandrier-sur-Mer</a>."}
+  },
+  es: {
+    brand:"Guía del alojamiento",
+    arrivalHead:"Llegada y salida",
+    hoursLabel:"Horarios", hoursText:'Entrada entre las 14:00 y las 19:00 — Salida antes de las 10:00.',
+    accessLabel:"Acceso", accessText:'El apartamento se encuentra en la residencia Port Soleil, edificio Les Pourpiers. La llegada y la salida las gestiona nuestra conserje, Maria — contáctela en el <a href="tel:+33622757195">+33 6 22 75 71 95</a> para acordar el horario.',
+    wifiLabel:"Wifi", wifiText:'Red: Port Soleil<br>Contraseña: Portsoleil49pourpiers', wifiConnect:"Conectarse al Wifi", wifiCopy:"Copiar contraseña", wifiCopied:"¡Copiado!",
+    beforeLabel:"Antes de irse", beforeText:"Por favor, lave los platos, saque la basura y apague el aire acondicionado. ¡Gracias!",
+    equipLabel:"Equipamiento", equipText:"El apartamento cuenta con aire acondicionado reversible. La residencia da acceso a una piscina (bañador obligatorio, bermudas de baño no permitidos), dos pistas de tenis, una mesa de ping-pong y una pista de petanca.",
+    rulesHead:"Normas de la casa",
+    rules:[
+      "No fumar dentro del apartamento.",
+      'Por favor, respete el silencio después de las 22:00, por consideración a los vecinos.',
+      'Capacidad máxima: 4 personas — no se admiten visitas adicionales sin acuerdo previo.',
+      'No se admiten mascotas.',
+      'Por favor, separe la basura — los contenedores están en el cuarto de basura.'
+    ],
+    addrHead:"Recomendaciones locales",
+    addr:{
+      restaurant:{t:"Restaurantes", d:"<a href='https://www.google.com/maps/search/?api=1&query=Go%C3%BBt-Th%C3%A9%20II%20Saint-Mandrier&query_place_id=ChIJ2zOSIu0cyRIRiHPGmVvmt3Q' target='_blank' rel='noopener'><strong>Goût-Thé II</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Le%20Lamparo%20Saint-Mandrier&query_place_id=ChIJJXmlUewcyRIRQL4a2vxx8jU' target='_blank' rel='noopener'><strong>Le Lamparo</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Burger%20de%20la%20Presqu%27ile%20Saint-Mandrier&query_place_id=ChIJv9n4BUMdyRIRDF6Iv4LSl-A' target='_blank' rel='noopener'><strong>Le Burger de la Presqu'île</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Restaurant%20Le%20Calypso%20Saint-Mandrier&query_place_id=ChIJm2BsE-0cyRIRdheDuFGP-6g' target='_blank' rel='noopener'><strong>Restaurant Le Calypso</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Bistrot%20Du%20Port%20Saint-Mandrier&query_place_id=ChIJqSSCjZUdyRIRm9L-_AdE7ZM' target='_blank' rel='noopener'><strong>Bistrot Du Port</strong></a>"},
+      bakery:{t:"Panaderías", d:"<a href='https://www.google.com/maps/search/?api=1&query=Maison%20Sarroche%20Saint-Mandrier&query_place_id=ChIJt5MxoO0cyRIRVOFr-GwbTk4' target='_blank' rel='noopener'><strong>Maison Sarroche</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Le%20fournil%20mandreen%20Saint-Mandrier&query_place_id=ChIJs7OdHFIdyRIRF1jimAu9ZYQ' target='_blank' rel='noopener'><strong>Le Fournil Mandréen</strong></a>"},
+      beach:{t:"Playas cercanas", d:"<a href='https://www.google.com/maps/search/?api=1&query=Plage%20Coudouli%C3%A8re%20Saint-Mandrier&query_place_id=ChIJyyZRse8cyRIRKLMFOu5W_Kg' target='_blank' rel='noopener'>Playa de la Coudoulière</a> (~0,6 km), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Canon%20Saint-Mandrier&query_place_id=ChIJ4-DdQJMcyRIRqpuWlaL2Gz4' target='_blank' rel='noopener'>playa del Canon</a> (~0,7 km), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Touring%20Saint-Mandrier&query_place_id=ChIJWbxkDsEdyRIR4rCtyS5WW5U' target='_blank' rel='noopener'>playa del Touring</a> (~1 km), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Sainte-Asile%20Saint-Mandrier&query_place_id=ChIJQSOHU84cyRIR3H8RoTcUj5w' target='_blank' rel='noopener'>playa de Sainte-Asile</a> (~2,2 km), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Cavalas%20Saint-Mandrier&query_place_id=ChIJw9s03_YcyRIRfh2KFCSflmk' target='_blank' rel='noopener'>playa de Cavalas</a> (~0,6 km) y <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Vieille%20Saint-Mandrier&query_place_id=ChIJR8B5wZUcyRIRlnu04BPfbe8' target='_blank' rel='noopener'>playa de la Vieille</a> (~1,3 km)."},
+      activity:{t:"Actividades", d:"<a href='https://www.google.com/maps/search/?api=1&query=Bateliers%20de%20la%20Cote%20d%27Azur%20Saint-Mandrier&query_place_id=ChIJ-yGbbFYyWkARLxXcdfmFdLA' target='_blank' rel='noopener'><strong>Les Bateliers de la Côte d'Azur</strong></a> — salida desde el puerto de Saint-Mandrier (quai Jules Guesde), travesía de aproximadamente 1 hora a Porquerolles; Port-Cros accesible con enlace.<br><a href='https://www.google.com/maps/search/?api=1&query=Sentier%20du%20littoral%20Saint-Mandrier&query_place_id=ChIJ1VuVDAAdyRIRJwnBsHi03wM' target='_blank' rel='noopener'><strong>Sentier du littoral</strong></a> — un bonito paseo costero fácil, ideal en familia, con vistas al mar.<br>El puerto de Saint-Mandrier está a poca distancia a pie (~10 min) — el barco lanzadera <a href='https://www.google.com/maps/search/?api=1&query=Ponton%20St%20Mandrier%20Reseau%20Mistral&query_place_id=ChIJd9lIIu0cyRIRAPeiFQqw7D0' target='_blank' rel='noopener'><strong>Ponton du Réseau Mistral</strong></a> permite llegar a Toulon fácilmente en unos 20 minutos."}
+    },
+    contactsHead:"Contactos útiles",
+    contacts:[
+      {who:"Conserje", num:'Maria — <a href="tel:+33622757195">+33 6 22 75 71 95</a>'},
+      {who:"Emergencias (número europeo)", num:'<a href="tel:112">112</a>'},
+      {who:"Ambulancia (SAMU)", num:'<a href="tel:15">15</a>'},
+      {who:"Policía", num:'<a href="tel:17">17</a>'},
+      {who:"Bomberos", num:'<a href="tel:18">18</a>'}
+    ],
+    footer:"",
+    hero:{eyebrow:"Var · Península de Saint-Mandrier-sur-Mer", title:"Bienvenido<br>a Saint-Mandrier-sur-Mer", text:"Todo lo que necesita saber para disfrutar del apartamento, desde la llegada hasta la salida. <a href='https://www.google.com/maps/search/?api=1&query=Office%20de%20tourisme%20Saint-Mandrier&query_place_id=ChIJ5xSvF-0cyRIRjier4JLJA-s' target='_blank' rel='noopener'>Oficina de turismo de Saint-Mandrier-sur-Mer</a>."}
+  },
+  pt: {
+    brand:"Guia de boas-vindas",
+    arrivalHead:"Chegada e partida",
+    hoursLabel:"Horários", hoursText:'Check-in entre as 14:00 e as 19:00 — Check-out antes das 10:00.',
+    accessLabel:"Acesso", accessText:'O apartamento está localizado na residência Port Soleil, edifício Les Pourpiers. O check-in e o check-out são feitos com a nossa rececionista, Maria — contacte-a pelo <a href="tel:+33622757195">+33 6 22 75 71 95</a> para combinar um horário.',
+    wifiLabel:"Wifi", wifiText:'Rede: Port Soleil<br>Palavra-passe: Portsoleil49pourpiers', wifiConnect:"Ligar ao Wifi", wifiCopy:"Copiar palavra-passe", wifiCopied:"Copiado!",
+    beforeLabel:"Antes de partir", beforeText:"Por favor, lave a loiça, retire o lixo e desligue o ar condicionado. Obrigado!",
+    equipLabel:"Equipamentos", equipText:"O apartamento está equipado com ar condicionado reversível. A residência dá acesso a uma piscina (fato de banho obrigatório, calções de banho largos não permitidos), dois campos de ténis, uma mesa de ping-pong e um campo de petanca.",
+    rulesHead:"Regras da casa",
+    rules:[
+      "Proibido fumar dentro do apartamento.",
+      'Por favor, respeite o silêncio depois das 22:00, por respeito aos vizinhos.',
+      'Capacidade máxima: 4 pessoas — sem visitantes adicionais sem acordo prévio.',
+      'Animais não são permitidos.',
+      'Por favor, separe o lixo — os contentores encontram-se na sala do lixo.'
+    ],
+    addrHead:"Recomendações locais",
+    addr:{
+      restaurant:{t:"Restaurantes", d:"<a href='https://www.google.com/maps/search/?api=1&query=Go%C3%BBt-Th%C3%A9%20II%20Saint-Mandrier&query_place_id=ChIJ2zOSIu0cyRIRiHPGmVvmt3Q' target='_blank' rel='noopener'><strong>Goût-Thé II</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Le%20Lamparo%20Saint-Mandrier&query_place_id=ChIJJXmlUewcyRIRQL4a2vxx8jU' target='_blank' rel='noopener'><strong>Le Lamparo</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Burger%20de%20la%20Presqu%27ile%20Saint-Mandrier&query_place_id=ChIJv9n4BUMdyRIRDF6Iv4LSl-A' target='_blank' rel='noopener'><strong>Le Burger de la Presqu'île</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Restaurant%20Le%20Calypso%20Saint-Mandrier&query_place_id=ChIJm2BsE-0cyRIRdheDuFGP-6g' target='_blank' rel='noopener'><strong>Restaurant Le Calypso</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Bistrot%20Du%20Port%20Saint-Mandrier&query_place_id=ChIJqSSCjZUdyRIRm9L-_AdE7ZM' target='_blank' rel='noopener'><strong>Bistrot Du Port</strong></a>"},
+      bakery:{t:"Padarias", d:"<a href='https://www.google.com/maps/search/?api=1&query=Maison%20Sarroche%20Saint-Mandrier&query_place_id=ChIJt5MxoO0cyRIRVOFr-GwbTk4' target='_blank' rel='noopener'><strong>Maison Sarroche</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Le%20fournil%20mandreen%20Saint-Mandrier&query_place_id=ChIJs7OdHFIdyRIRF1jimAu9ZYQ' target='_blank' rel='noopener'><strong>Le Fournil Mandréen</strong></a>"},
+      beach:{t:"Praias próximas", d:"<a href='https://www.google.com/maps/search/?api=1&query=Plage%20Coudouli%C3%A8re%20Saint-Mandrier&query_place_id=ChIJyyZRse8cyRIRKLMFOu5W_Kg' target='_blank' rel='noopener'>Praia de la Coudoulière</a> (~0,6 km), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Canon%20Saint-Mandrier&query_place_id=ChIJ4-DdQJMcyRIRqpuWlaL2Gz4' target='_blank' rel='noopener'>praia do Canon</a> (~0,7 km), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Touring%20Saint-Mandrier&query_place_id=ChIJWbxkDsEdyRIR4rCtyS5WW5U' target='_blank' rel='noopener'>praia do Touring</a> (~1 km), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Sainte-Asile%20Saint-Mandrier&query_place_id=ChIJQSOHU84cyRIR3H8RoTcUj5w' target='_blank' rel='noopener'>praia de Sainte-Asile</a> (~2,2 km), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Cavalas%20Saint-Mandrier&query_place_id=ChIJw9s03_YcyRIRfh2KFCSflmk' target='_blank' rel='noopener'>praia de Cavalas</a> (~0,6 km) e <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Vieille%20Saint-Mandrier&query_place_id=ChIJR8B5wZUcyRIRlnu04BPfbe8' target='_blank' rel='noopener'>praia da Vieille</a> (~1,3 km)."},
+      activity:{t:"Atividades", d:"<a href='https://www.google.com/maps/search/?api=1&query=Bateliers%20de%20la%20Cote%20d%27Azur%20Saint-Mandrier&query_place_id=ChIJ-yGbbFYyWkARLxXcdfmFdLA' target='_blank' rel='noopener'><strong>Les Bateliers de la Côte d'Azur</strong></a> — partida do porto de Saint-Mandrier (quai Jules Guesde), travessia de cerca de 1 hora até Porquerolles; Port-Cros acessível com ligação.<br><a href='https://www.google.com/maps/search/?api=1&query=Sentier%20du%20littoral%20Saint-Mandrier&query_place_id=ChIJ1VuVDAAdyRIRJwnBsHi03wM' target='_blank' rel='noopener'><strong>Sentier du littoral</strong></a> — um belo passeio costeiro fácil, ótimo em família, com vista para o mar.<br>O porto de Saint-Mandrier fica a uma curta distância a pé (~10 min) — o barco lançadeira <a href='https://www.google.com/maps/search/?api=1&query=Ponton%20St%20Mandrier%20Reseau%20Mistral&query_place_id=ChIJd9lIIu0cyRIRAPeiFQqw7D0' target='_blank' rel='noopener'><strong>Ponton du Réseau Mistral</strong></a> permite chegar facilmente a Toulon em cerca de 20 minutos."}
+    },
+    contactsHead:"Contactos úteis",
+    contacts:[
+      {who:"Rececionista", num:'Maria — <a href="tel:+33622757195">+33 6 22 75 71 95</a>'},
+      {who:"Emergência (número europeu)", num:'<a href="tel:112">112</a>'},
+      {who:"Ambulância (SAMU)", num:'<a href="tel:15">15</a>'},
+      {who:"Polícia", num:'<a href="tel:17">17</a>'},
+      {who:"Bombeiros", num:'<a href="tel:18">18</a>'}
+    ],
+    footer:"",
+    hero:{eyebrow:"Var · Península de Saint-Mandrier-sur-Mer", title:"Bem-vindos<br>a Saint-Mandrier-sur-Mer", text:"Tudo o que precisa de saber para desfrutar do apartamento, desde a chegada até à partida. <a href='https://www.google.com/maps/search/?api=1&query=Office%20de%20tourisme%20Saint-Mandrier&query_place_id=ChIJ5xSvF-0cyRIRjier4JLJA-s' target='_blank' rel='noopener'>Posto de turismo de Saint-Mandrier-sur-Mer</a>."}
+  },
+  ru: {
+    brand:"Гид для гостей",
+    arrivalHead:"Заезд и выезд",
+    hoursLabel:"Время", hoursText:'Заезд с 14:00 до 19:00 — выезд до 10:00.',
+    accessLabel:"Доступ", accessText:'Квартира находится в резиденции Port Soleil, корпус Les Pourpiers. Заезд и выезд организует наш консьерж Мария — свяжитесь с ней по номеру <a href="tel:+33622757195">+33 6 22 75 71 95</a>, чтобы согласовать время.',
+    wifiLabel:"Wi-Fi", wifiText:'Сеть: Port Soleil<br>Пароль: Portsoleil49pourpiers', wifiConnect:"Подключиться к Wi-Fi", wifiCopy:"Скопировать пароль", wifiCopied:"Скопировано!",
+    beforeLabel:"Перед отъездом", beforeText:"Пожалуйста, помойте посуду, вынесите мусор и выключите кондиционер. Спасибо!",
+    equipLabel:"Оснащение", equipText:"В квартире установлен реверсивный кондиционер. На территории резиденции есть бассейн (только плавательные плавки/купальник, шорты для плавания запрещены), два теннисных корта, стол для настольного тенниса и площадка для петанка.",
+    rulesHead:"Правила проживания",
+    rules:[
+      "Курение в квартире запрещено.",
+      'Пожалуйста, соблюдайте тишину после 22:00 из уважения к соседям.',
+      'Максимальная вместимость: 4 человек — дополнительные гости только по предварительному согласованию.',
+      'Животные не допускаются.',
+      'Пожалуйста, сортируйте мусор — контейнеры находятся в мусорной комнате.'
+    ],
+    addrHead:"Рекомендации поблизости",
+    addr:{
+      restaurant:{t:"Рестораны", d:"<a href='https://www.google.com/maps/search/?api=1&query=Go%C3%BBt-Th%C3%A9%20II%20Saint-Mandrier&query_place_id=ChIJ2zOSIu0cyRIRiHPGmVvmt3Q' target='_blank' rel='noopener'><strong>Goût-Thé II</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Le%20Lamparo%20Saint-Mandrier&query_place_id=ChIJJXmlUewcyRIRQL4a2vxx8jU' target='_blank' rel='noopener'><strong>Le Lamparo</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Burger%20de%20la%20Presqu%27ile%20Saint-Mandrier&query_place_id=ChIJv9n4BUMdyRIRDF6Iv4LSl-A' target='_blank' rel='noopener'><strong>Le Burger de la Presqu'île</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Restaurant%20Le%20Calypso%20Saint-Mandrier&query_place_id=ChIJm2BsE-0cyRIRdheDuFGP-6g' target='_blank' rel='noopener'><strong>Restaurant Le Calypso</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Bistrot%20Du%20Port%20Saint-Mandrier&query_place_id=ChIJqSSCjZUdyRIRm9L-_AdE7ZM' target='_blank' rel='noopener'><strong>Bistrot Du Port</strong></a>"},
+      bakery:{t:"Пекарни", d:"<a href='https://www.google.com/maps/search/?api=1&query=Maison%20Sarroche%20Saint-Mandrier&query_place_id=ChIJt5MxoO0cyRIRVOFr-GwbTk4' target='_blank' rel='noopener'><strong>Maison Sarroche</strong></a><br><a href='https://www.google.com/maps/search/?api=1&query=Le%20fournil%20mandreen%20Saint-Mandrier&query_place_id=ChIJs7OdHFIdyRIRF1jimAu9ZYQ' target='_blank' rel='noopener'><strong>Le Fournil Mandréen</strong></a>"},
+      beach:{t:"Ближайшие пляжи", d:"<a href='https://www.google.com/maps/search/?api=1&query=Plage%20Coudouli%C3%A8re%20Saint-Mandrier&query_place_id=ChIJyyZRse8cyRIRKLMFOu5W_Kg' target='_blank' rel='noopener'>Пляж Кудульер</a> (~0,6 км), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Canon%20Saint-Mandrier&query_place_id=ChIJ4-DdQJMcyRIRqpuWlaL2Gz4' target='_blank' rel='noopener'>пляж Канон</a> (~0,7 км), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Touring%20Saint-Mandrier&query_place_id=ChIJWbxkDsEdyRIR4rCtyS5WW5U' target='_blank' rel='noopener'>пляж Туринг</a> (~1 км), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Sainte-Asile%20Saint-Mandrier&query_place_id=ChIJQSOHU84cyRIR3H8RoTcUj5w' target='_blank' rel='noopener'>пляж Сент-Азиль</a> (~2,2 км), <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Cavalas%20Saint-Mandrier&query_place_id=ChIJw9s03_YcyRIRfh2KFCSflmk' target='_blank' rel='noopener'>пляж Кавалас</a> (~0,6 км) и <a href='https://www.google.com/maps/search/?api=1&query=Plage%20Vieille%20Saint-Mandrier&query_place_id=ChIJR8B5wZUcyRIRlnu04BPfbe8' target='_blank' rel='noopener'>пляж Вьей</a> (~1,3 км)."},
+      activity:{t:"Развлечения", d:"<a href='https://www.google.com/maps/search/?api=1&query=Bateliers%20de%20la%20Cote%20d%27Azur%20Saint-Mandrier&query_place_id=ChIJ-yGbbFYyWkARLxXcdfmFdLA' target='_blank' rel='noopener'><strong>Les Bateliers de la Côte d'Azur</strong></a> — отправление из порта Сен-Мандрие (quai Jules Guesde), переправа около 1 часа до Поркероль; на Пор-Кро можно добраться с пересадкой.<br><a href='https://www.google.com/maps/search/?api=1&query=Sentier%20du%20littoral%20Saint-Mandrier&query_place_id=ChIJ1VuVDAAdyRIRJwnBsHi03wM' target='_blank' rel='noopener'><strong>Sentier du littoral</strong></a> — красивая лёгкая прибрежная прогулка, отлично подходит для семей, с видом на море.<br>До порта Сен-Мандрие можно дойти пешком (~10 мин) — паром <a href='https://www.google.com/maps/search/?api=1&query=Ponton%20St%20Mandrier%20Reseau%20Mistral&query_place_id=ChIJd9lIIu0cyRIRAPeiFQqw7D0' target='_blank' rel='noopener'><strong>Ponton du Réseau Mistral</strong></a> позволяет легко добраться до Тулона примерно за 20 минут."}
+    },
+    contactsHead:"Полезные контакты",
+    contacts:[
+      {who:"Консьерж", num:'Мария — <a href="tel:+33622757195">+33 6 22 75 71 95</a>'},
+      {who:"Экстренная служба (европейский номер)", num:'<a href="tel:112">112</a>'},
+      {who:"Скорая помощь (SAMU)", num:'<a href="tel:15">15</a>'},
+      {who:"Полиция", num:'<a href="tel:17">17</a>'},
+      {who:"Пожарная служба", num:'<a href="tel:18">18</a>'}
+    ],
+    footer:"",
+    hero:{eyebrow:"Вар · полуостров Сен-Мандрие-сюр-Мер", title:"Добро пожаловать<br>в Сен-Мандрие-сюр-Мер", text:"Всё, что нужно знать, чтобы комфортно провести время в квартире — от заезда до выезда. <a href='https://www.google.com/maps/search/?api=1&query=Office%20de%20tourisme%20Saint-Mandrier&query_place_id=ChIJ5xSvF-0cyRIRjier4JLJA-s' target='_blank' rel='noopener'>Туристический офис Сен-Мандрие-сюр-Мер</a>."}
+  }
+};
+
+let currentLang = 'fr';
+const langSelect = document.getElementById('lang-select');
+
+function render(){
+  const d = T[currentLang];
+  const h = d.hero;
+
+  document.getElementById('brand-text').textContent = d.brand;
+  document.getElementById('eyebrow').textContent = h.eyebrow;
+  document.getElementById('hero-title').innerHTML = h.title;
+  document.getElementById('hero-text').innerHTML = h.text;
+
+  document.getElementById('arrival-head').textContent = d.arrivalHead;
+  document.getElementById('hours-label').textContent = d.hoursLabel;
+  document.getElementById('hours-text').innerHTML = d.hoursText;
+  document.getElementById('access-label').textContent = d.accessLabel;
+  document.getElementById('access-text').innerHTML = d.accessText;
+  document.getElementById('wifi-label').textContent = d.wifiLabel;
+  document.getElementById('wifi-text').innerHTML = d.wifiText;
+  document.getElementById('wifi-connect').textContent = d.wifiConnect;
+  document.getElementById('wifi-copy').textContent = d.wifiCopy;
+  document.getElementById('before-label').textContent = d.beforeLabel;
+  document.getElementById('before-text').textContent = d.beforeText;
+  document.getElementById('equip-label').textContent = d.equipLabel;
+  document.getElementById('equip-text').innerHTML = d.equipText;
+
+  document.getElementById('rules-head').textContent = d.rulesHead;
+  const rulesList = document.getElementById('rules-list');
+  rulesList.innerHTML = '';
+  d.rules.forEach((r, i) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<span class="num">0${i+1}</span><p>${r}</p>`;
+    rulesList.appendChild(li);
+  });
+
+  document.getElementById('addr-head').textContent = d.addrHead;
+  document.getElementById('addr-restaurant-t').textContent = d.addr.restaurant.t;
+  document.getElementById('addr-restaurant-d').innerHTML = d.addr.restaurant.d;
+  document.getElementById('addr-bakery-t').textContent = d.addr.bakery.t;
+  document.getElementById('addr-bakery-d').innerHTML = d.addr.bakery.d;
+  document.getElementById('addr-beach-t').textContent = d.addr.beach.t;
+  document.getElementById('addr-beach-d').innerHTML = d.addr.beach.d;
+  document.getElementById('addr-activity-t').textContent = d.addr.activity.t;
+  document.getElementById('addr-activity-d').innerHTML = d.addr.activity.d;
+
+  document.getElementById('contacts-head').textContent = d.contactsHead;
+  const contactsCard = document.getElementById('contacts-card');
+  contactsCard.innerHTML = '';
+  d.contacts.forEach(c => {
+    const row = document.createElement('div');
+    row.className = 'contact-row';
+    row.innerHTML = `<span class="who">${c.who}</span><span class="num">${c.num}</span>`;
+    contactsCard.appendChild(row);
+  });
+
+  document.getElementById('footer-text').textContent = d.footer;
+  langSelect.value = currentLang;
+}
+
+langSelect.addEventListener('change', (e) => { currentLang = e.target.value; render(); });
+
+render();
+
+const wifiSSID = "Port Soleil";
+const wifiPassword = "Portsoleil49pourpiers";
+const wifiLink = document.getElementById('wifi-connect');
+if (wifiLink) {
+  wifiLink.href = `WIFI:T:WPA;S:${wifiSSID};P:${wifiPassword};;`;
+}
+const copyBtn = document.getElementById('wifi-copy');
+if (copyBtn) {
+  copyBtn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(wifiPassword);
+      copyBtn.textContent = T[currentLang].wifiCopied;
+      setTimeout(() => { copyBtn.textContent = T[currentLang].wifiCopy; }, 2000);
+    } catch (e) {
+      // clipboard unavailable — no-op
+    }
+  });
+}
+</script>
+
+</body>
+</html>
