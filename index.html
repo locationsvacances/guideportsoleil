@@ -179,6 +179,15 @@
     line-height:1.5;
     margin:0;
   }
+  .card p .subhead{
+    display:block;
+    color:var(--ink);
+    font-weight:600;
+    margin:10px 0 2px;
+  }
+  .card p .subhead:first-child{
+    margin-top:0;
+  }
   .fill{
     color:var(--accent-soft);
     background:rgba(232,163,61,0.14);
@@ -306,6 +315,7 @@
       </div>
       <div class="card"><h3 id="before-label"></h3><p id="before-text"></p></div>
       <div class="card"><h3 id="equip-label"></h3><p id="equip-text"></p></div>
+      <div class="card"><h3 id="kit-label"></h3><p id="kit-text"></p></div>
     </div>
   </section>
 
@@ -349,10 +359,11 @@ const T = {
     brand:"Guide du logis",
     arrivalHead:"Arrivée & départ",
     hoursLabel:"Horaires", hoursText:'Arrivée entre 14h00 et 19h00 — Départ avant 10h00.',
-    accessLabel:"Accès", accessText:'L\'appartement se trouve dans la résidence Port Soleil, bâtiment Les Pourpiers. L\'arrivée et le départ se font avec notre conciergerie, Maria — contactez-la au <a href="tel:+33622757195">06 22 75 71 95</a> pour convenir de l\'horaire. Attention, la résidence présente un dénivelé — la piscine se situe dans la partie basse. Vous pouvez vous garer librement partout dans la résidence.',
+    accessLabel:"Accès", accessText:'L\'appartement se trouve dans la résidence Port Soleil, bâtiment Les Pourpiers. L\'arrivée et le départ se font avec notre concierge, Maria. Vous pouvez la contacter au <a href="tel:+33622757195">06 22 75 71 95</a> pour convenir de l\'horaire. Attention, la résidence présente un dénivelé. La piscine se situe dans la partie basse. Vous pouvez vous garer librement partout dans la résidence.',
     wifiLabel:"Wifi", wifiText:'Réseau : Port Soleil<br>Mot de passe : Portsoleil49pourpiers', wifiConnect:"Se connecter au Wi-Fi", wifiCopy:"Copier le mot de passe", wifiCopied:"Copié !",
     beforeLabel:"Avant de partir", beforeText:"Vaisselle propre, poubelles descendues, climatisation éteinte. Merci !",
-    equipLabel:"Équipements", equipText:"Cuisine équipée avec plancha, appareil à raclette, lave-vaisselle et lave-linge. Enceinte Alexa et abonnement Netflix. Le logement est équipé d'une climatisation réversible. La résidence donne accès à une piscine (maillot de bain obligatoire, short de bain interdit), deux courts de tennis, une table de tennis de table et un terrain de pétanque.",
+    equipLabel:"Équipements", equipText:'<span class="subhead">Le logement</span>- Cuisine équipée<br>- Plancha<br>- Appareil à raclette<br>- Lave-vaisselle<br>- Lave-linge<br>- Chaise haute<br>- Lit bébé<br>- Climatisation réversible<br>- Douche à l\'italienne<br>- TV connectée<br>- Enceinte Alexa<br>- Abonnement Netflix<span class="subhead">La résidence</span>- Accès piscine (maillot obligatoire, short interdit, accès badge)<br>- Deux courts de tennis (accès badge)<br>- Table de tennis de table (accès badge)<br>- Terrain de pétanque (accès libre)',
+    kitLabel:"Kit de bienvenue inclus", kitText:"- Un rouleau d'essuie-tout<br>- Un rouleau de papier hygiénique<br>- Une pastille pour lave-vaisselle<br>- Une éponge<br>- Un torchon<br>- Deux sacs poubelle<br>- Draps inclus<br><br><strong>Les serviettes sont en option !</strong><br>Modalités à voir avec la conciergerie.",
     rulesHead:"Règlement intérieur",
     rules:[
       "Non-fumeur à l'intérieur du logement.",
@@ -385,10 +396,11 @@ market:{t:"Supérette", d:"<a href='https://www.google.com/maps/search/?api=1&qu
     brand:"Guest Guide",
     arrivalHead:"Arrival & departure",
     hoursLabel:"Hours", hoursText:'Check-in between 2:00 PM and 7:00 PM — Check-out before 10:00 AM.',
-    accessLabel:"Access", accessText:'The apartment is located in the Port Soleil residence, Les Pourpiers building. Check-in and check-out are handled by our concierge, Maria — contact her at <a href="tel:+33622757195">+33 6 22 75 71 95</a> to arrange a time. Please note the residence is on a slope — the swimming pool is in the lower part. You can park freely anywhere within the residence.',
+    accessLabel:"Access", accessText:'The apartment is located in the Port Soleil residence, Les Pourpiers building. Check-in and check-out are handled by our concierge, Maria. Contact her at <a href="tel:+33622757195">+33 6 22 75 71 95</a> to arrange a time. Please note the residence is on a slope. The swimming pool is in the lower part. You can park freely anywhere within the residence.',
     wifiLabel:"Wifi", wifiText:'Network: Port Soleil<br>Password: Portsoleil49pourpiers', wifiConnect:"Connect to Wifi", wifiCopy:"Copy password", wifiCopied:"Copied!",
     beforeLabel:"Before you leave", beforeText:"Please wash the dishes, take out the bins, and switch off the air conditioning. Thank you!",
-    equipLabel:"Equipment", equipText:"Fully-equipped kitchen with a plancha grill, a raclette maker, a dishwasher and a washing machine. Alexa speaker and Netflix subscription. The apartment is equipped with reversible air conditioning. The residence gives access to a swimming pool (swimwear only, board shorts not allowed), two tennis courts, a table tennis table and a pétanque court.",
+    equipLabel:"Equipment", equipText:'<span class="subhead">The apartment</span>- Fully-equipped kitchen<br>- Plancha grill<br>- Raclette maker<br>- Dishwasher<br>- Washing machine<br>- High chair<br>- Baby cot<br>- Reversible air conditioning<br>- Walk-in shower<br>- Smart TV<br>- Alexa speaker<br>- Netflix subscription<span class="subhead">The residence</span>- Pool access (swimwear only, board shorts not allowed, badge access)<br>- Two tennis courts (badge access)<br>- Table tennis table (badge access)<br>- Pétanque court (free access)',
+    kitLabel:"Welcome kit included", kitText:"- A roll of paper towels<br>- A roll of toilet paper<br>- A dishwasher tablet<br>- A sponge<br>- A tea towel<br>- Two bin bags<br>- Bed linen included<br><br><strong>Towels are optional!</strong><br>Details available from the concierge.",
     rulesHead:"House rules",
     rules:[
       "No smoking inside the apartment.",
@@ -421,10 +433,11 @@ market:{t:"Convenience store", d:"<a href='https://www.google.com/maps/search/?a
     brand:"Guida per gli ospiti",
     arrivalHead:"Arrivo e partenza",
     hoursLabel:"Orari", hoursText:'Check-in tra le 14:00 e le 19:00 — Check-out entro le 10:00.',
-    accessLabel:"Accesso", accessText:'L\'appartamento si trova nella residenza Port Soleil, edificio Les Pourpiers. L\'arrivo e la partenza sono gestiti dalla nostra concierge, Maria — contattatela al <a href="tel:+33622757195">+33 6 22 75 71 95</a> per concordare l\'orario. Attenzione, la residenza presenta un dislivello — la piscina si trova nella parte bassa. Potete parcheggiare liberamente in qualsiasi punto della residenza.',
+    accessLabel:"Accesso", accessText:'L\'appartamento si trova nella residenza Port Soleil, edificio Les Pourpiers. L\'arrivo e la partenza sono gestiti dalla nostra concierge, Maria. Contattatela al <a href="tel:+33622757195">+33 6 22 75 71 95</a> per concordare l\'orario. Attenzione, la residenza presenta un dislivello. La piscina si trova nella parte bassa. Potete parcheggiare liberamente in qualsiasi punto della residenza.',
     wifiLabel:"Wifi", wifiText:'Rete: Port Soleil<br>Password: Portsoleil49pourpiers', wifiConnect:"Connettersi al Wifi", wifiCopy:"Copia password", wifiCopied:"Copiato!",
     beforeLabel:"Prima di partire", beforeText:"Si prega di lavare i piatti, portare fuori la spazzatura e spegnere il climatizzatore. Grazie!",
-    equipLabel:"Dotazioni", equipText:"Cucina attrezzata con plancha, apparecchio per la raclette, lavastoviglie e lavatrice. Altoparlante Alexa e abbonamento Netflix. L'appartamento è dotato di climatizzatore reversibile. La residenza dà accesso a una piscina (costume da bagno obbligatorio, bermuda da bagno non ammessi), due campi da tennis, un tavolo da ping-pong e un campo da pétanque.",
+    equipLabel:"Dotazioni", equipText:'<span class="subhead">L\'appartamento</span>- Cucina attrezzata<br>- Plancha<br>- Apparecchio per la raclette<br>- Lavastoviglie<br>- Lavatrice<br>- Seggiolone<br>- Lettino per neonati<br>- Climatizzatore reversibile<br>- Doccia walk-in<br>- Smart TV<br>- Altoparlante Alexa<br>- Abbonamento Netflix<span class="subhead">La residenza</span>- Accesso piscina (costume obbligatorio, bermuda non ammessi, accesso con badge)<br>- Due campi da tennis (accesso con badge)<br>- Tavolo da ping-pong (accesso con badge)<br>- Campo da pétanque (accesso libero)',
+    kitLabel:"Kit di benvenuto incluso", kitText:"- Un rotolo di carta assorbente<br>- Un rotolo di carta igienica<br>- Una pastiglia per lavastoviglie<br>- Una spugna<br>- Uno strofinaccio<br>- Due sacchetti per la spazzatura<br>- Lenzuola incluse<br><br><strong>Gli asciugamani sono opzionali!</strong><br>Modalità da concordare con la concierge.",
     rulesHead:"Regolamento interno",
     rules:[
       "Vietato fumare all'interno dell'appartamento.",
@@ -457,10 +470,11 @@ market:{t:"Minimarket", d:"<a href='https://www.google.com/maps/search/?api=1&qu
     brand:"Guía del alojamiento",
     arrivalHead:"Llegada y salida",
     hoursLabel:"Horarios", hoursText:'Entrada entre las 14:00 y las 19:00 — Salida antes de las 10:00.',
-    accessLabel:"Acceso", accessText:'El apartamento se encuentra en la residencia Port Soleil, edificio Les Pourpiers. La llegada y la salida las gestiona nuestra conserje, Maria — contáctela en el <a href="tel:+33622757195">+33 6 22 75 71 95</a> para acordar el horario. Tenga en cuenta que la residencia tiene un desnivel — la piscina está en la parte baja. Puede aparcar libremente en cualquier lugar de la residencia.',
+    accessLabel:"Acceso", accessText:'El apartamento se encuentra en la residencia Port Soleil, edificio Les Pourpiers. La llegada y la salida las gestiona nuestra conserje, Maria. Contáctela en el <a href="tel:+33622757195">+33 6 22 75 71 95</a> para acordar el horario. Tenga en cuenta que la residencia tiene un desnivel. La piscina está en la parte baja. Puede aparcar libremente en cualquier lugar de la residencia.',
     wifiLabel:"Wifi", wifiText:'Red: Port Soleil<br>Contraseña: Portsoleil49pourpiers', wifiConnect:"Conectarse al Wifi", wifiCopy:"Copiar contraseña", wifiCopied:"¡Copiado!",
     beforeLabel:"Antes de irse", beforeText:"Por favor, lave los platos, saque la basura y apague el aire acondicionado. ¡Gracias!",
-    equipLabel:"Equipamiento", equipText:"Cocina equipada con plancha, aparato de raclette, lavavajillas y lavadora. Altavoz Alexa y suscripción a Netflix. El apartamento cuenta con aire acondicionado reversible. La residencia da acceso a una piscina (bañador obligatorio, bermudas de baño no permitidos), dos pistas de tenis, una mesa de ping-pong y una pista de petanca.",
+    equipLabel:"Equipamiento", equipText:'<span class="subhead">El apartamento</span>- Cocina equipada<br>- Plancha<br>- Aparato de raclette<br>- Lavavajillas<br>- Lavadora<br>- Trona<br>- Cuna para bebé<br>- Aire acondicionado reversible<br>- Ducha de obra<br>- Smart TV<br>- Altavoz Alexa<br>- Suscripción a Netflix<span class="subhead">La residencia</span>- Acceso a la piscina (bañador obligatorio, bermudas no permitidas, acceso con tarjeta)<br>- Dos pistas de tenis (acceso con tarjeta)<br>- Mesa de ping-pong (acceso con tarjeta)<br>- Pista de petanca (acceso libre)',
+    kitLabel:"Kit de bienvenida incluido", kitText:"- Un rollo de papel de cocina<br>- Un rollo de papel higiénico<br>- Una pastilla para el lavavajillas<br>- Una esponja<br>- Un paño de cocina<br>- Dos bolsas de basura<br>- Sábanas incluidas<br><br><strong>¡Las toallas son opcionales!</strong><br>Condiciones a consultar con la conserje.",
     rulesHead:"Normas de la casa",
     rules:[
       "No fumar dentro del apartamento.",
@@ -493,10 +507,11 @@ market:{t:"Supermercado", d:"<a href='https://www.google.com/maps/search/?api=1&
     brand:"Guia de boas-vindas",
     arrivalHead:"Chegada e partida",
     hoursLabel:"Horários", hoursText:'Check-in entre as 14:00 e as 19:00 — Check-out antes das 10:00.',
-    accessLabel:"Acesso", accessText:'O apartamento está localizado na residência Port Soleil, edifício Les Pourpiers. O check-in e o check-out são feitos com a nossa rececionista, Maria — contacte-a pelo <a href="tel:+33622757195">+33 6 22 75 71 95</a> para combinar um horário. Note que a residência tem um desnível — a piscina fica na parte baixa. Pode estacionar livremente em qualquer local da residência.',
+    accessLabel:"Acesso", accessText:'O apartamento está localizado na residência Port Soleil, edifício Les Pourpiers. O check-in e o check-out são feitos com a nossa rececionista, Maria. Contacte-a pelo <a href="tel:+33622757195">+33 6 22 75 71 95</a> para combinar um horário. Note que a residência tem um desnível. A piscina fica na parte baixa. Pode estacionar livremente em qualquer local da residência.',
     wifiLabel:"Wifi", wifiText:'Rede: Port Soleil<br>Palavra-passe: Portsoleil49pourpiers', wifiConnect:"Ligar ao Wifi", wifiCopy:"Copiar palavra-passe", wifiCopied:"Copiado!",
     beforeLabel:"Antes de partir", beforeText:"Por favor, lave a loiça, retire o lixo e desligue o ar condicionado. Obrigado!",
-    equipLabel:"Equipamentos", equipText:"Cozinha equipada com plancha, aparelho de raclette, máquina de lavar louça e máquina de lavar roupa. Coluna Alexa e subscrição Netflix. O apartamento está equipado com ar condicionado reversível. A residência dá acesso a uma piscina (fato de banho obrigatório, calções de banho largos não permitidos), dois campos de ténis, uma mesa de ping-pong e um campo de petanca.",
+    equipLabel:"Equipamentos", equipText:'<span class="subhead">O apartamento</span>- Cozinha equipada<br>- Plancha<br>- Aparelho de raclette<br>- Máquina de lavar louça<br>- Máquina de lavar roupa<br>- Cadeira alta<br>- Cama de bebé<br>- Ar condicionado reversível<br>- Duche italiano<br>- TV inteligente<br>- Coluna Alexa<br>- Subscrição Netflix<span class="subhead">A residência</span>- Acesso à piscina (fato de banho obrigatório, calções largos não permitidos, acesso com cartão)<br>- Dois campos de ténis (acesso com cartão)<br>- Mesa de ping-pong (acesso com cartão)<br>- Campo de petanca (acesso livre)',
+    kitLabel:"Kit de boas-vindas incluído", kitText:"- Um rolo de papel de cozinha<br>- Um rolo de papel higiénico<br>- Uma pastilha para máquina de lavar louça<br>- Uma esponja<br>- Um pano de cozinha<br>- Dois sacos de lixo<br>- Lençóis incluídos<br><br><strong>As toalhas são opcionais!</strong><br>Condições a combinar com a rececionista.",
     rulesHead:"Regras da casa",
     rules:[
       "Proibido fumar dentro do apartamento.",
@@ -529,10 +544,11 @@ market:{t:"Minimercado", d:"<a href='https://www.google.com/maps/search/?api=1&q
     brand:"Гид для гостей",
     arrivalHead:"Заезд и выезд",
     hoursLabel:"Время", hoursText:'Заезд с 14:00 до 19:00 — выезд до 10:00.',
-    accessLabel:"Доступ", accessText:'Квартира находится в резиденции Port Soleil, корпус Les Pourpiers. Заезд и выезд организует наш консьерж Мария — свяжитесь с ней по номеру <a href="tel:+33622757195">+33 6 22 75 71 95</a>, чтобы согласовать время. Обратите внимание, территория резиденции имеет перепад высот — бассейн находится в нижней части. Вы можете свободно парковаться в любом месте на территории резиденции.',
+    accessLabel:"Доступ", accessText:'Квартира находится в резиденции Port Soleil, корпус Les Pourpiers. Заезд и выезд организует наш консьерж Мария. Свяжитесь с ней по номеру <a href="tel:+33622757195">+33 6 22 75 71 95</a>, чтобы согласовать время. Обратите внимание, территория резиденции имеет перепад высот. Бассейн находится в нижней части. Вы можете свободно парковаться в любом месте на территории резиденции.',
     wifiLabel:"Wi-Fi", wifiText:'Сеть: Port Soleil<br>Пароль: Portsoleil49pourpiers', wifiConnect:"Подключиться к Wi-Fi", wifiCopy:"Скопировать пароль", wifiCopied:"Скопировано!",
     beforeLabel:"Перед отъездом", beforeText:"Пожалуйста, помойте посуду, вынесите мусор и выключите кондиционер. Спасибо!",
-    equipLabel:"Оснащение", equipText:"Оборудованная кухня с грилем-планчей, аппаратом для раклета, посудомоечной и стиральной машиной. Колонка Alexa и подписка Netflix. В квартире установлен реверсивный кондиционер. На территории резиденции есть бассейн (только плавательные плавки/купальник, шорты для плавания запрещены), два теннисных корта, стол для настольного тенниса и площадка для петанка.",
+    equipLabel:"Оснащение", equipText:'<span class="subhead">Квартира</span>- Оборудованная кухня<br>- Гриль-планча<br>- Аппарат для раклета<br>- Посудомоечная машина<br>- Стиральная машина<br>- Детский стульчик<br>- Детская кроватка<br>- Реверсивный кондиционер<br>- Душ без поддона<br>- Смарт-телевизор<br>- Колонка Alexa<br>- Подписка Netflix<span class="subhead">Резиденция</span>- Доступ в бассейн (только плавки/купальник, шорты запрещены, доступ по бейджу)<br>- Два теннисных корта (доступ по бейджу)<br>- Стол для настольного тенниса (доступ по бейджу)<br>- Площадка для петанка (свободный доступ)',
+    kitLabel:"Приветственный набор включён", kitText:"- Рулон бумажных полотенец<br>- Рулон туалетной бумаги<br>- Таблетка для посудомоечной машины<br>- Губка<br>- Кухонное полотенце<br>- Два мусорных пакета<br>- Постельное бельё включено<br><br><strong>Полотенца предоставляются за дополнительную плату!</strong><br>Уточните условия у консьержа.",
     rulesHead:"Правила проживания",
     rules:[
       "Курение в квартире запрещено.",
@@ -588,6 +604,8 @@ function render(){
   document.getElementById('before-text').textContent = d.beforeText;
   document.getElementById('equip-label').textContent = d.equipLabel;
   document.getElementById('equip-text').innerHTML = d.equipText;
+  document.getElementById('kit-label').textContent = d.kitLabel;
+  document.getElementById('kit-text').innerHTML = d.kitText;
 
   document.getElementById('rules-head').textContent = d.rulesHead;
   const rulesList = document.getElementById('rules-list');
