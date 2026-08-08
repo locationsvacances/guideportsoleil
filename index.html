@@ -671,7 +671,16 @@ market:{t:"Мини-маркет", d:"<a href='https://www.google.com/maps/searc
   }
 };
 
-let currentLang = 'fr';
+const supportedLangs = ['fr','en','de','nl','it','es','pt','ru'];
+function detectLang(){
+  const browserLangs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'fr'];
+  for (const bl of browserLangs) {
+    const code = bl.slice(0,2).toLowerCase();
+    if (supportedLangs.includes(code)) return code;
+  }
+  return 'fr';
+}
+let currentLang = detectLang();
 const langSelect = document.getElementById('lang-select');
 
 function render(){
